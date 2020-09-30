@@ -1,0 +1,14 @@
+{
+  "name": "travel-log",
+  "version": "1.0.0",
+  "author": "Konrad Gorski <konradgrsk@gmail.com>",
+  "license": "MIT",
+  "private": "true",
+  "workspaces": [
+    "server"
+  ],
+  "scripts": {
+    "srv": "yarn workspace server",
+    "start": "yarn workspace server run start"
+  }
+}

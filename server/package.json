@@ -1,7 +1,11 @@
 {
   "name": "server",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
   "dependencies": {
-    "@yarnpkg/pnpify": "^2.2.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "helmet": "^4.1.1",
