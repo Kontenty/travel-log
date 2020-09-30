@@ -21,6 +21,7 @@ app.use(
     origin: process.env.CORS_ORIGIN,
   })
 );
+// body parsing middleware
 app.use(express.json());
 
 app.get('/', (req, res) => {
