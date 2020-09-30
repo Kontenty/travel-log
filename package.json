@@ -5,7 +5,8 @@
   "license": "MIT",
   "private": "true",
   "workspaces": [
-    "server"
+    "server",
+    "client"
   ],
   "scripts": {
     "srv": "yarn workspace server",
