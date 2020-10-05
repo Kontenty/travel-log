@@ -1,21 +1,13 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import-normalize; /* bring in normalize.css styles */
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
 }
 
 .root {
   position: relative;
   width: 100%;
-  height: 700px;
+  min-height: 100vh;
 }
 .map-container {
   position: absolute !important;
@@ -23,4 +15,17 @@ code {
   bottom: 0;
   left: 0;
   right: 0;
+}
+.mapboxgl-marker {
+  cursor: pointer;
+}
+.mapboxgl-popup-content {
+  text-align: center;
+}
+.mapboxgl-popup-content h2:first-letter {
+  text-transform: uppercase;
+}
+.popup-img {
+  width: 200px;
+  max-height: 200px;
 }
