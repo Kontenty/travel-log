@@ -1,7 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useEffect,
+  useRef,
+  useState
+} from 'react';
+import ReactDOM from 'react-dom'
 import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
-import { listLogEntires } from './API';
+import {
+  listLogEntires
+} from './API';
+import LogEntryPopup from "./components/LogEntryPopup"
 
 mapboxgl.accessToken =
   'pk.eyJ1Ijoia29udGVudHkiLCJhIjoiY2tmcGYweWtxMDRxMDJ3cnA1c2ZyaGYwaiJ9.d5CW9SPawU-ahL_1f7Lavg';
@@ -10,6 +17,8 @@ function App() {
   const [logEntries, setLogEntries] = useState([]);
   const [map, setMap] = useState(null);
   const mapContainerRef = useRef(null);
+  // const markerRef = useRef(new mapboxgl.Marker());
+  // const popupRef = useRef(new mapboxgl.Popup({offset: 25}));
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -38,9 +47,14 @@ function App() {
   useEffect(() => {
     if (map) {
       logEntries.forEach((entry) => {
-        const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
-          `<h2>${entry.title}</h2><img src=${entry.image} alt="popup-image" class="popup-img" />`
-        );
+        const popupNode = document.createElement('div');
+        ReactDOM.render(< LogEntryPopup entry={
+          entry
+        }
+        />, popupNode);
+        const popup = new mapboxgl.Popup({
+          offset: 25
+        }).setDOMContent(popupNode);
 
         new mapboxgl.Marker()
           .setLngLat([entry.longitude, entry.latitude])
@@ -50,10 +64,14 @@ function App() {
     }
   }, [logEntries, map]);
 
-  return (
-    <div className="root">
-      <div className="map-container" ref={mapContainerRef} />
-    </div>
+  return (<
+    div className="root" >
+    <
+      div className="map-container"
+      ref={
+        mapContainerRef
+      }
+    /> </div >
   );
 }
 

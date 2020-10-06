@@ -3,3 +3,24 @@
   grid-template-columns: 80px 1fr;
   gap: 10px;
 }
+
+.entryPopup {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+}
+
+$badgeSize: 1.5em;
+
+.rating {
+  display: inline-block;
+  background: darkslateblue;
+  color: white;
+  font-size: 0.9em;
+  width: $badgeSize;
+  height: $badgeSize;
+  line-height: $badgeSize;
+  border-radius: 50%;
+  text-align: center;
+  justify-self: center;
+}
