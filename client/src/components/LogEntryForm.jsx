@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import css from "../style.module.scss"
+import { addNewEntry } from "../API"
 
 const initialState = {
   title: "",
@@ -22,6 +23,7 @@ const LogEntryForm = ({ lngLat }) => {
     event.preventDefault()
     const data = { ...formData, latitude: lngLat.lat, longitude: lngLat.lng }
     console.log(data)
+    addNewEntry(data)
   }
 
   return (
