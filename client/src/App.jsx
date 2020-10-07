@@ -13,13 +13,13 @@ function App() {
   const [map, setMap] = useState(null);
   const mapContainerRef = useRef(null);
   // const markerRef = useRef(new mapboxgl.Marker());
-  /* const formPopupRef = useRef(
+  const formPopupRef = useRef(
     new mapboxgl.Popup({
       offset: 2,
       className: 'form-popup',
       maxWidth: '400px',
     })
-  ); */
+  );
 
   useEffect(() => {
     const newMap = new mapboxgl.Map({
@@ -33,23 +33,30 @@ function App() {
     newMap.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
     newMap.on('load', () => {
       newMap.resize();
+
+      // double click handler
       newMap.on('dblclick', (event) => {
-        const formPopup = new mapboxgl.Popup({
+        /* const formPopup = new mapboxgl.Popup({
           offset: 2,
           className: 'form-popup',
           maxWidth: '400px',
-        });
-        const removePopup = () => {
-          formPopup.remove();
+        }); */
+        const handleAddEntry = (newEntry) => {
+          console.log(newEntry);
+          setLogEntries((prevState) => [...prevState, newEntry]);
+          formPopupRef.current.remove();
         };
 
         const { lngLat } = event;
         const popupNode = document.createElement('div');
         ReactDOM.render(
-          <LogEntryForm lngLat={lngLat} removePopup={removePopup} />,
+          <LogEntryForm lngLat={lngLat} onAddEntry={handleAddEntry} />,
           popupNode
         );
-        formPopup.setLngLat(lngLat).setDOMContent(popupNode).addTo(newMap);
+        formPopupRef.current
+          .setLngLat(lngLat)
+          .setDOMContent(popupNode)
+          .addTo(newMap);
       });
 
       setMap(newMap);

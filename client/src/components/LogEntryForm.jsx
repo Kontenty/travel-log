@@ -11,7 +11,7 @@ const initialState = {
   visitDate: '',
 };
 
-const LogEntryForm = ({ lngLat, removePopup }) => {
+const LogEntryForm = ({ lngLat, onAddEntry }) => {
   const [formData, setFormData] = useState(initialState);
 
   const handleInput = (event) => {
@@ -19,12 +19,17 @@ const LogEntryForm = ({ lngLat, removePopup }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = { ...formData, latitude: lngLat.lat, longitude: lngLat.lng };
     console.log(data);
-    addNewEntry(data);
-    removePopup();
+    try {
+      const addedEntry = await addNewEntry(data);
+      console.log(addedEntry);
+      onAddEntry(addedEntry);
+    } catch (error) {
+      console.debug(error);
+    }
   };
 
   return (
