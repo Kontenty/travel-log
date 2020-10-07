@@ -11,6 +11,10 @@
   "scripts": {
     "srv": "yarn workspace server",
     "server": "yarn workspace server run start",
-    "client": "yarn workspace client run start"
+    "client": "yarn workspace client run start",
+    "start": "concurrently --kill-others \"yarn run server\" \"yarn run client\""
+  },
+  "dependencies": {
+    "concurrently": "^5.3.0"
   }
 }

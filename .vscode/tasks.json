@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "server",
+      "problemMatcher": ["$eslint-compact"],
+      "label": "npm: server",
+      "detail": "yarn run workspace server"
+    },
+    {
+      "type": "npm",
+      "script": "client",
+      "problemMatcher": ["$eslint-compact"],
+      "label": "npm: client",
+      "detail": "yarn run workspace client"
+    },
+    {
+      "label": "start app",
+      "dependsOn": ["npm: server", "npm: client"],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never"
+      }
+    }
+  ]
+}
