@@ -8,11 +8,19 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 5px;
+  .styleWrap {
+    position: relative;
+  }
+  h2 {
+    margin-bottom: 0;
+  }
 }
 
-$badgeSize: 1.5em;
-
+$badgeSize: 1.8em;
 .rating {
+  position: absolute;
+  top: -$badgeSize/4;
+  left: -$badgeSize/4;
   display: inline-block;
   background: darkslateblue;
   color: white;
