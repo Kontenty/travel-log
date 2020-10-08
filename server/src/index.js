@@ -9,10 +9,22 @@ const logs = require('./api/logs');
 
 const app = express();
 
-mongoose.connect(process.env.DATABASE_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose
+  .connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(
+    () => {
+      console.log(
+        `Successfully conected to mongodb at ${process.env.DATABASE_URL}`
+      );
+    },
+    (err) => {
+      console.error('Could not connect to DB');
+      console.error(err);
+    }
+  );
 
 app.use(morgan('common'));
 app.use(helmet());

@@ -46,12 +46,11 @@ function App() {
           console.log(newEntry);
           setLogEntries((prevState) => [...prevState, newEntry]);
           formPopupRef.current.remove();
-          ReactDOM.unmountComponentAtNode(popupNode);
         };
 
         const { lngLat } = event;
         ReactDOM.render(
-          <LogEntryForm lngLat={lngLat} onAddEntry={handleAddEntry} />,
+          <LogEntryForm location={lngLat} onAddEntry={handleAddEntry} />,
           popupNode
         );
         formPopupRef.current
