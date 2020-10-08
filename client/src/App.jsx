@@ -41,14 +41,15 @@ function App() {
           className: 'form-popup',
           maxWidth: '400px',
         }); */
+        const popupNode = document.createElement('div');
         const handleAddEntry = (newEntry) => {
           console.log(newEntry);
           setLogEntries((prevState) => [...prevState, newEntry]);
           formPopupRef.current.remove();
+          ReactDOM.unmountComponentAtNode(popupNode);
         };
 
         const { lngLat } = event;
-        const popupNode = document.createElement('div');
         ReactDOM.render(
           <LogEntryForm lngLat={lngLat} onAddEntry={handleAddEntry} />,
           popupNode
@@ -57,6 +58,9 @@ function App() {
           .setLngLat(lngLat)
           .setDOMContent(popupNode)
           .addTo(newMap);
+        formPopupRef.current.on('close', () =>
+          ReactDOM.unmountComponentAtNode(popupNode)
+        );
       });
 
       setMap(newMap);
